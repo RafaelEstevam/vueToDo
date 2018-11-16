@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/RafaelEstevam/vueToDo/issues"
   },
-  "homepage": "https://github.com/RafaelEstevam/vueToDo#readme"
+  "homepage": "https://github.com/RafaelEstevam/vueToDo#readme",
+  "devDependencies": {
+    "vue-cli": "^2.9.6"
+  }
 }
