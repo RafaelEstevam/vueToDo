@@ -13,7 +13,7 @@ var TaskSchema = new Schema({
   inicio: String,
   fim: String,
   mais_detalhes: String,
-  notificacoes: String
+  notificacoes: Boolean
 });
 
 var Tasks = mongoose.model("Tasks", TaskSchema);

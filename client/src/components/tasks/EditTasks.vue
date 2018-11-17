@@ -1,11 +1,11 @@
 
 <template>
-  <div class="posts row no-gutters">
+  <div class="EditTasks row no-gutters">
     <div class="col-sm-9 no-scroll">
       <div class="container mt-5 pt-4">
         <div class="row">
           <div class="col-sm-6">
-            <h1 class="text-left">Nova tarefa</h1>
+            <h1 class="text-left">Editar tarefa</h1>
           </div>
           <div class="col-sm-6">
             <div class="float-right">
@@ -53,9 +53,7 @@
           <div class="col-sm-12">
             <button class="btn btn-rounded btn-secondary float-left"><i class="material-icons align-middle">attach_file</i></button>
             <button class="btn btn-rounded btn-danger float-right"><i class="material-icons align-middle"></i> Apagar</button>
-            <router-link to="/tasks">
-              <button class="btn btn-rounded btn-info float-right mr-3"><i class="material-icons align-middle"></i> Voltar</button>
-            </router-link>
+            <button @click="goToList" class="btn btn-rounded btn-info float-right mr-3"><i class="material-icons align-middle"></i> Voltar</button>
           </div>
         </div>
       </div>
@@ -118,7 +116,7 @@
               </div>
               <div class="row fixed-botton bg-dark border-top pt-3 pb-3">
                 <div class="col-sm-12">
-                  <button class="btn btn-orange float-left col-sm-12 shadow" @click="addTasks"><i class="material-icons align-middle">done</i> Salvar tarefa</button>
+                  <button class="btn btn-orange float-left col-sm-12 shadow" @click="updateTask"><i class="material-icons align-middle">done</i> Salvar tarefa</button>
                 </div>
               </div>
             </div>
@@ -140,7 +138,7 @@
 import CRUDServices from '@/services/CRUDServices'
 
 export default {
-  name: 'posts',
+  name: 'EditTasks',
   data () {
     return {
       prioridade: '',
@@ -153,26 +151,47 @@ export default {
       inicio:'',
       fim:'',
       mais_detalhes:'',
-      notificacoes: false,
-      posts: []
+      notificacoes: false
     }
   },
+  mounted (){
+    this.getTask()
+  },
   methods:{
-    async addTasks(){
-      await CRUDServices.addPost('tasks', {
-        prioridade: this.prioridade,
+    async getTask() {
+      const response = await CRUDServices.getPost('tasks/', {id: this.$route.params.id})
+
+      this.titulo = response.data.titulo
+      this.prioridade = response.data.prioridade
+      this.estimativa = response.data.estimativa
+      this.dificuldade = response.data.dificuldade
+      this.descricao_tarefa = response.data.descricao_tarefa
+      this.tags = response.data.tags
+      this.status = response.data.status
+      this.inicio = response.data.inicio
+      this.fim = response.data.fim
+      this.mais_detalhes = response.data.mais_detalhes
+      this.notificacoes = response.data.notificacoes
+    },
+    async updateTask () {
+      await CRUDServices.updatePost('tasks/', {
+        id: this.$route.params.id,
         titulo: this.titulo,
-        estimativa: this.estimativa,
-        dificuldade: this.dificuldade,
-        descricao_tarefa: this.descricao_tarefa,
-        tags: this.tags,
-        status: this.status,
-        inicio: this.inicio,
-        fim: this.fim,
-        mais_detalhes: this.mais_detalhes,
-        notificacoes: this.notificacoes,
+        prioridade : this.prioridade,
+        estimativa : this.estimativa,
+        dificuldade : this.dificuldade,
+        descricao_tarefa : this.descricao_tarefa,
+        tags : this.tags,
+        status : this.status,
+        inicio : this.inicio,
+        fim : this.fim,
+        mais_detalhes : this.mais_detalhes,
+        notificacoes : this.notificacoes
       })
       this.$router.push({ name: 'Tasks' })
+    },
+    async goToList(){
+      await this.$router.push({ name: 'Tasks' })
     }
   }
 }

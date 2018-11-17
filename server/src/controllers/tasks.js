@@ -1,6 +1,9 @@
 //Model
 var Tasks = require("../models/tasks");
 
+//DTO
+var dto = 'titulo prioridade estimativa dificuldade descricao_tarefa tags status inicio fim mais_detalhes notificacoes'
+
 //Controller
 module.exports = function(app){
   
@@ -21,7 +24,6 @@ module.exports = function(app){
     var new_post = new Tasks({
       prioridade: prioridade,
       titulo: titulo,
-      prioridade: prioridade,
       estimativa: estimativa,
       dificuldade: dificuldade,
       descricao_tarefa: descricao_tarefa,
@@ -45,33 +47,43 @@ module.exports = function(app){
   })
   
   // Fetch all posts
-  app.get('/posts', (req, res) => {
-    Post.find({}, 'title description', function (error, posts) {
+  app.get('/tasks', (req, res) => {
+    Tasks.find({}, dto, function (error, tasks) {
       if (error) { console.error(error); }
       res.send({
-        posts: posts
+        tasks: tasks
       })
     }).sort({_id:-1})
   })
   
   // Fetch single post
-  app.get('/posts/:id', (req, res) => {
+  app.get('/tasks/:id', (req, res) => {
     var db = req.db;
-    Post.findById(req.params.id, 'title description', function (error, post) {
+    Tasks.findById(req.params.id, dto, function (error, tasks) {
       if (error) { console.error(error); }
-      res.send(post)
+      res.send(tasks)
     })
   })
   
   // Update a post
-  app.put('/posts/:id', (req, res) => {
+  app.put('/tasks/:id', (req, res) => {
     var db = req.db;
-    Post.findById(req.params.id, 'title description', function (error, post) {
+    Tasks.findById(req.params.id, dto, function (error, tasks) {
       if (error) { console.error(error); }
-  
-      post.title = req.body.title
-      post.description = req.body.description
-      post.save(function (error) {
+      
+      tasks.titulo = req.body.titulo
+      tasks.prioridade = req.body.prioridade
+      tasks.estimativa = req.body.estimativa
+      tasks.dificuldade = req.body.dificuldade
+      tasks.descricao_tarefa = req.body.descricao_tarefa
+      tasks.tags = req.body.tags
+      tasks.status = req.body.status
+      tasks.inicio = req.body.inicio
+      tasks.fim = req.body.fim
+      tasks.mais_detalhes = req.body.mais_detalhes
+      tasks.notificacoes = req.body.notificacoes
+      //tasks.description = req.body.description
+      tasks.save(function (error) {
         if (error) {
           console.log(error)
         }
@@ -83,9 +95,9 @@ module.exports = function(app){
   })
   
   // Delete a post
-  app.delete('/posts/:id', (req, res) => {
+  app.delete('/tasks/:id', (req, res) => {
     var db = req.db;
-    Post.remove({
+    Tasks.remove({
       _id: req.params.id
     }, function(err, post){
       if (err)
