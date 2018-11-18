@@ -52,7 +52,7 @@
         <div class="row fixed-botton bg-light border-top pt-3 pb-3">
           <div class="col-sm-12">
             <button class="btn btn-rounded btn-secondary float-left"><i class="material-icons align-middle">attach_file</i></button>
-            <button class="btn btn-rounded btn-danger float-right"><i class="material-icons align-middle"></i> Apagar</button>
+            <button class="btn btn-rounded btn-danger float-right" @click="deleteTask"><i class="material-icons align-middle"></i> Apagar</button>
             <button @click="goToList" class="btn btn-rounded btn-info float-right mr-3"><i class="material-icons align-middle"></i> Voltar</button>
           </div>
         </div>
@@ -87,7 +87,7 @@
                     <option>Status da tarefa</option>
                     <option value="1">Finalizada</option>
                     <option value="2">Em execução</option>
-                    <option value="1">Atrasada</option>
+                    <option value="3">Atrasada</option>
                   </select>
                 </div>
               </div>
@@ -192,36 +192,17 @@ export default {
     },
     async goToList(){
       await this.$router.push({ name: 'Tasks' })
+    },
+    async deleteTask () {
+      var confirmacao = confirm("Deseja mesmo excluir essa tarefa? Esta ação é irrevercível.")
+      if(confirmacao){
+        await CRUDServices.deletePost('tasks/', this.$route.params.id)
+        this.$router.push({ name: 'Tasks' })
+      }
     }
   }
 }
 </script>
 <style type="text/css">
-  .height-100hv{
-    height: 100vh;
-    max-height: 100vh;
-    overflow: hidden;
-    overflow-y: scroll;
-  }
-
-  .no-scroll{
-    height: 100vh;
-    max-height: 100vh;
-    overflow: hidden;
-  }
-
-  .fixed-botton{
-    position: absolute;
-    bottom: 0px;
-    width: 100%
-  }
-
-  .btn-orange{
-    background-color :#ff6e40;
-    color: #ffffff
-  }
-
-  .textarea-height{
-    height: 150px;
-  }
+  
 </style>

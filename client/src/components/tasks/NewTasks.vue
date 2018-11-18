@@ -16,42 +16,53 @@
                 <option value="3">Alta</option>
               </select>
             </div>
-            <label class="small align-middle float-right mr-2">Prioridade: </label>
+            <p class="small align-middle float-right mr-2 mt-2 text-info"><strong>Prioridade: </strong></p>
           </div>
         </div>
       </div>
-      <div class="container mt-5 pt-4">
-        <div class="row mb-4">
+      <div class="container mt-5 text-left">
+        <div class="row">
           <div class="col-sm-12">
-            <input class="form-control" placeholder="Título" v-model="titulo"/>
+            <span class="small text-info"><strong>Título: </strong></span>
+            <input class="form-control" v-model="titulo"/>
           </div>
         </div>
-        <div class="row mb-4">
+        <div class="row">
           <div class="col-sm-6">
-            <input class="form-control" placeholder="Estimativa de tempo em hrs." v-model="estimativa"/>
+            <span class="small text-info"><strong>Status da tarefa: </strong></span>
+            <select class="form-control" placeholder="Título" v-model="status">
+              <option></option>
+              <option value="1">Finalizada</option>
+              <option value="2">Em execução</option>
+              <option value="3">Atrasada</option>
+            </select>
+            <!-- <input class="form-control" placeholder="Estimativa de tempo em hrs." v-model="estimativa"/> -->
           </div>
           <div class="col-sm-6">
+            <span class="small text-info"><strong>Grau de dificuldade: </strong></span>
             <select class="form-control" placeholder="Dificuldade" v-model="dificuldade">
-              <option>Dificuldade</option>
+              <option></option>
               <option value="1">Fácil</option>
               <option value="2">Médio</option>
               <option value="3">Difícil</option>
             </select>
           </div>
         </div>
-        <div class="row mb-4">
+        <div class="row">
           <div class="col-sm-12">
-            <textarea placeholder="Descrição da tarefa" class="form-control textarea-height" v-model="descricao_tarefa"></textarea>
+            <span class="small text-info"><strong>Descrição da tarefa: </strong></span>
+            <textarea class="form-control textarea-height" v-model="descricao_tarefa"></textarea>
           </div>
         </div>
         <div class="row mb-4">
           <div class="col-sm-12">
-            <input class="form-control" placeholder="Título" v-model="tags"/>
+            <span class="small text-info"><strong>Tags: </strong></span>
+            <input class="form-control" v-model="tags"/>
           </div>
         </div>
         <div class="row fixed-botton bg-light border-top pt-3 pb-3">
           <div class="col-sm-12">
-            <button class="btn btn-rounded btn-secondary float-left"><i class="material-icons align-middle">attach_file</i></button>
+            <!-- <button class="btn btn-rounded btn-secondary float-left"><i class="material-icons align-middle">attach_file</i></button> -->
             <button class="btn btn-rounded btn-danger float-right"><i class="material-icons align-middle"></i> Apagar</button>
             <router-link to="/tasks">
               <button class="btn btn-rounded btn-info float-right mr-3"><i class="material-icons align-middle"></i> Voltar</button>
@@ -76,37 +87,47 @@
           </ul>
         </div>
         <div class="row">
-          <div class="tab-content container" id="myTabContent">
+          <div class="tab-content container text-left" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div class="row mt-3">
+                <div class="col-sm-12">
+                  <h4 class="text-left text-info text-center">Prazos e entrega</h4>
+                </div>
+              </div>
+              <div class="row mt-1">
+                <div class="col-sm-12">
+                  <span class="small text-white">Estimativa (em horas)</span>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-info">
+                      <div class="input-group-text"><i class="material-icons">access_time</i></div>
+                    </div>
+                    <input type="text" class="form-control" v-model="estimativa">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <span class="small text-white">Início</span>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-info">
+                      <div class="input-group-text"><i class="material-icons">check_box_outline_blank</i></div>
+                    </div>
+                    <input class="form-control" placeholder="Título" type="date" v-model="inicio"/>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <span class="small text-white">Fim</span>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-info">
+                      <div class="input-group-text"><i class="material-icons">check_box</i></div>
+                    </div>
+                    <input class="form-control" placeholder="Título" type="date" v-model="fim"/>
+                  </div>
+                </div>
+              </div>
               <div class="row mt-4">
-                <div class="col-sm-12">
-                  <h4 class="text-left">Configurações</h4>
-                </div>
-              </div>
-              <div class="row mt-4 mb-4">
-                <div class="col-sm-12">
-                  <select class="form-control" placeholder="Título" v-model="status">
-                    <option>Status da tarefa</option>
-                    <option value="1">Finalizada</option>
-                    <option value="2">Em execução</option>
-                    <option value="1">Atrasada</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row mb-4">
-                <div class="col-sm-6">
-                  <input class="form-control" placeholder="Título" type="date" v-model="inicio"/>
-                </div>
-                <div class="col-sm-6">
-                  <input class="form-control" placeholder="Título" type="date" v-model="fim"/>
-                </div>
-              </div>
-              <div class="row mb-4">
-                <div class="col-sm-12">
-                  <textarea placeholder="Mais detalhes da tarefa" class="form-control textarea-height" v-model="mais_detalhes"></textarea>
-                </div>
-              </div>
-              <div class="row mb-4">
                 <div class="col-sm-12">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="defaultCheck1" v-model="notificacoes">
@@ -125,7 +146,7 @@
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
               <div class="row mt-4">
                 <div class="col-sm-12">
-                  <h4 class="text-left">Comentários (Em breve)</h4>
+                  <h4 class="text-center text-info">Comentários (Em breve)</h4>
                 </div>
               </div>
             </div>
@@ -178,31 +199,4 @@ export default {
 }
 </script>
 <style type="text/css">
-  .height-100hv{
-    height: 100vh;
-    max-height: 100vh;
-    overflow: hidden;
-    overflow-y: scroll;
-  }
-
-  .no-scroll{
-    height: 100vh;
-    max-height: 100vh;
-    overflow: hidden;
-  }
-
-  .fixed-botton{
-    position: absolute;
-    bottom: 0px;
-    width: 100%
-  }
-
-  .btn-orange{
-    background-color :#ff6e40;
-    color: #ffffff
-  }
-
-  .textarea-height{
-    height: 150px;
-  }
 </style>
