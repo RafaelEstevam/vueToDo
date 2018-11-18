@@ -9,18 +9,19 @@
         <input class="form-control form-control-dark search rounded-0" type="text" placeholder="Search" aria-label="Search">
         <i class="material-icons icon-search">search</i>
       </div>
-      <div class="col-md-3">
-        <p class="float-left">{{name}}</p>
-        <ul class="navbar-nav px-3 float-right">
-          <li class="nav-item text-nowrap dropdown">
-            <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-        </ul>
+      <div class="col-md-3 pt-2">
+        <div class="mx-auto">
+          <ul class="navbar-nav px-3 float-left">
+            <li class="nav-item text-nowrap dropdown">
+              <a class="" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons font-large">account_circle</i></a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
+                <a class="dropdown-item" href="#">Conta</a>
+                <a class="dropdown-item" href="#">Sair</a>
+              </div>
+            </li>
+          </ul>
+          <h6 class="float-left text-white align-middle mt-2">{{name}}</h6>
+        </div>
       </div>
     </div>
     <router-view :key="$route.fullPath"></router-view>
@@ -50,6 +51,28 @@ export default {
   margin-top: 60px;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #24282d; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ff6e40;
+    width: 10px 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #e25224; 
+}
+
+
 #app h1, #app h2, #app h3, #app h4, #app h5, #app h6{
   font-family: 'Quicksand';
 }
@@ -73,6 +96,15 @@ export default {
 .show .dropdown-menu{
   position: absolute !important
 }
+
+.bg-orange {
+  background-color: #ff6e40;
+}
+
+.border-orange {
+  border-color: #ff6e40 !important;
+}
+
 .btn-orange {
     background-color: #ff6e40;
     color: #ffffff;
@@ -107,5 +139,9 @@ a:hover {
 }
 .textarea-height{
   height: 150px;
+}
+
+.font-large{
+  font-size: 35px
 }
 </style>

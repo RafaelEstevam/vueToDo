@@ -14,7 +14,7 @@
                 <option value="1">Baixa</option>
                 <option value="2">Média</option>
                 <option value="3">Alta</option>
-              </select>
+              </select> 
             </div>
             <p class="small align-middle float-right mr-2 mt-2 text-info"><strong>Prioridade: </strong></p>
           </div>
