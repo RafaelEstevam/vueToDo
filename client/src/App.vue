@@ -1,15 +1,38 @@
 <template>
   <div id="app" class="mt-0">
+    <div class="menu-navbar disable" id="main-navbar">
+      <div class="col-md-3 bg-dark">
+        <div class="row bg-orange p-5">
+          <h1 class="text-white mx-auto">Vue<strong class="text-dark">ToDo</strong></h1>
+        </div>
+        <div class="row bg-dark text-left">
+          <ul class="menu">
+            <li><router-link v-bind:to="{ name: 'Tasks' }" class=""><i class="material-icons align-middle text-white">toc</i> <strong>Tarefas</strong></router-link></li>
+            <li><router-link v-bind:to="{ name: 'NewTasks' }" class=""><i class="material-icons align-middle text-white">add</i> <strong>Nova tarefa</strong></router-link></li>
+          </ul>
+        </div>
+        <div class="row p-3 bg-secondary">
+          <a class="" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons font-large">account_circle</i></a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="#">Conta</a>
+            <a class="dropdown-item" href="#">Sair</a>
+          </div>
+          <h6 class="float-left text-white align-middle mt-2">{{name}}</h6>
+        </div>
+      </div>
+      <div class="col-md-9 text-left p-2" id="overlay-menu" @click="openMenu"><i class="material-icons text-white">close</i></div>
+    </div>
     <div class="row bg-dark shadow fixed-top no-gutters">
       <div class="col-md-3">
-        <button class="btn btn-default bg-transparent text-white middle-align mt-1 float-left btn-lg"><i class="material-icons">menu</i></button>
+        <button class="btn btn-default bg-transparent text-white middle-align mt-1 float-left btn-lg" id="menuButton" @click="openMenu"><i class="material-icons">menu</i></button>
+        <button class="btn btn-default bg-transparent text-white middle-align mt-1 float-right btn-lg mobile" id="searchButton" @click="openSearch"><i class="material-icons">search</i></button>  
         <h3 class="text-white mt-2">Vue<strong class="color-orange">ToDo</strong></h3>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 desktop search-mobile">
         <input class="form-control form-control-dark search rounded-0" type="text" placeholder="Search" aria-label="Search">
         <i class="material-icons icon-search">search</i>
       </div>
-      <div class="col-md-3 pt-2">
+      <div class="col-md-3 pt-2 desktop">
         <div class="mx-auto">
           <ul class="navbar-nav px-3 float-left">
             <li class="nav-item text-nowrap dropdown">
@@ -29,18 +52,37 @@
 </template>
 
 <script>
+
 export default {
   name: 'App',
   data () {
     return {
-      name: "Rafael Estevam"
+      name: "Username"
     }
   },
+  methods: {
+    
+    openSearch(){
+      $('.search-mobile').toggleClass('desktop')
+    },
+
+    openMenu(){
+      $('#main-navbar').toggleClass('disable')
+    }
+    
+  }
 }
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Quicksand');
+
+.desktop{
+  display: block;
+}
+.mobile{
+  display: none;
+}
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -72,6 +114,45 @@ export default {
     background: #e25224; 
 }
 
+.menu-navbar{
+  position: fixed;
+  z-index: 10000;
+  width: 100%;
+  display: flex;
+  height: 100%;
+}
+
+.disable{
+ display: none;
+}
+
+#overlay-menu{
+  background: rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+
+.menu{
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.menu li{
+  display: inline-block;
+  width: 100%;
+}
+
+.menu li a{
+  padding: 20px;
+  width: 100%;
+  display: inherit;
+  text-decoration: none;
+}
+
+.menu li a:hover{
+  background: #24282d; 
+}
 
 #app h1, #app h2, #app h3, #app h4, #app h5, #app h6{
   font-family: 'Quicksand';
@@ -123,25 +204,64 @@ a:hover {
 }
 .height-100hv{
   height: 100vh;
-  max-height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   overflow-y: scroll;
 }
 .fixed-botton{
-  position: absolute;
+  position: fixed;
   bottom: 0px;
-  width: 100%
+  width: 100%;
+  left: 0px;
+  display: flex;
 }
 .no-scroll{
   height: 100vh;
-  max-height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
 }
+
 .textarea-height{
   height: 150px;
 }
 
 .font-large{
   font-size: 35px
+}
+
+
+@media(max-width: 767px){
+  .desktop{
+    display: none;
+  }
+  .mobile{
+    display: block;
+  }
+  .height-100hv{
+    height: auto;
+    min-height: 100vh;
+    max-height: inherit;
+    overflow: inherit;
+    overflow-y: inherit;
+  }
+  .no-scroll{
+    height: auto;
+    min-height: 100vh;
+    max-height: inherit;
+    overflow: inherit;
+    margin-bottom: 60px
+  }
+  .fixed-botton{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+    display: flex;
+  }
+
+  .mobile-orientation{
+    float: left !important;
+  }
+
 }
 </style>

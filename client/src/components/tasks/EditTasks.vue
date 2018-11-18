@@ -1,26 +1,28 @@
 
 <template>
   <div class="EditTasks row no-gutters">
-    <div class="col-sm-9 no-scroll">
+    <div class="col-sm-9 no-scroll pb-3">
       <div class="container mt-5 pt-4">
         <div class="row">
           <div class="col-sm-6">
             <h1 class="text-left">Editar tarefa</h1>
           </div>
           <div class="col-sm-6">
-            <div class="float-right">
-              <select class="form-control" v-model="prioridade">
-                <option></option>
-                <option value="1">Baixa</option>
-                <option value="2">Média</option>
-                <option value="3">Alta</option>
-              </select> 
+            <div class="float-right mobile-orientation">
+              <div class="float-right">
+                <select class="form-control" v-model="prioridade">
+                  <option></option>
+                  <option value="1">Baixa</option>
+                  <option value="2">Média</option>
+                  <option value="3">Alta</option>
+                </select> 
+              </div>
+              <p class="small align-middle float-right mr-2 mt-2 text-info"><strong>Prioridade: </strong></p>
             </div>
-            <p class="small align-middle float-right mr-2 mt-2 text-info"><strong>Prioridade: </strong></p>
           </div>
         </div>
       </div>
-      <div class="container mt-5 text-left">
+      <div class="container mt-sm-5 text-left">
         <div class="row">
           <div class="col-sm-12">
             <span class="small text-info"><strong>Título: </strong></span>
@@ -59,17 +61,10 @@
             <input class="form-control" placeholder="Título" v-model="tags"/>
           </div>
         </div>
-        <div class="row fixed-botton bg-light border-top pt-3 pb-3">
-          <div class="col-sm-12">
-            <!-- <button class="btn btn-rounded btn-secondary float-left"><i class="material-icons align-middle">attach_file</i></button> -->
-            <button class="btn btn-rounded btn-danger float-right" @click="deleteTask"><i class="material-icons align-middle"></i> Apagar</button>
-            <button @click="goToList" class="btn btn-rounded btn-info float-right mr-3"><i class="material-icons align-middle"></i> Voltar</button>
-          </div>
-        </div>
       </div>
     </div>
-    <div class="col-sm-3 bg-dark border-left no-scroll">
-      <div class="container mt-5 pt-4">
+    <div class="col-sm-3 bg-dark no-scroll">
+      <div class="container mt-sm-5 pt-4">
         <div class="row">
           <ul class="nav nav-pills nav-fill col-sm-12" id="myTab" role="tablist">
             <li class="nav-item">
@@ -134,11 +129,6 @@
                   </div>
                 </div>
               </div>
-              <div class="row fixed-botton bg-dark border-top pt-3 pb-3">
-                <div class="col-sm-12">
-                  <button class="btn btn-orange float-left col-sm-12 shadow" @click="updateTask"><i class="material-icons align-middle">done</i> Salvar tarefa</button>
-                </div>
-              </div>
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
               <div class="row mt-4">
@@ -149,6 +139,18 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="fixed-botton">
+      <div class="col-sm-9 bg-light p-3">
+        <!-- <button class="btn btn-rounded btn-secondary float-left"><i class="material-icons align-middle">attach_file</i></button> -->
+        <button class="btn btn-rounded btn-danger float-right"><i class="material-icons align-middle mobile">close</i> <span class="desktop">Apagar</span></button>
+        <router-link to="/">
+          <button class="btn btn-rounded btn-info float-right mr-3"><i class="material-icons align-middle mobile">chevron_left</i> <span class="desktop">Voltar</span></button>
+        </router-link>
+      </div>
+      <div class="col-sm-3 bg-secondary p-3">
+        <button class="btn btn-orange float-left col-sm-12 shadow" @click="updateTask"><i class="material-icons align-middle mobile">done</i> <span class="desktop">Salvar tarefa</span></button>
       </div>
     </div>
   </div>

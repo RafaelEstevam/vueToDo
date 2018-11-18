@@ -8,7 +8,7 @@
             <h1 class="text-left">Lista de tarefas</h1>
           </div>
           <div class="col-sm-6">
-            <div class="float-right">
+            <div class="float-right mobile-orientation">
               <router-link v-bind:to="{ name: 'NewTasks' }" class="">
                 <button class="btn btn-orange"><i class="material-icons align-middle">check</i> Nova tarefa</button>
               </router-link>
@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="col-sm-3 bg-dark height-100hv">
-      <div class="container mt-5 pt-4">
+      <div class="container mt-sm-5 pt-4">
         <div class="row">
           <ul class="nav nav-pills nav-fill col-sm-12" id="myTab" role="tablist">
             <li class="nav-item">
@@ -227,9 +227,16 @@ export default {
   methods: {
     async getTasks () {
       const response = await CRUDServices.fetchPosts('tasks')
+      
       let execucao = []
       let finalizadas = []
       let atrasadas = []
+
+      // this.tasks = [
+      //   {_id: 1, prioridade:"", titulo:"Reunião com diretoria", estimativa: "12", dificuldade:"1", descricao_tarefa: "123", tags :"123", status:"1",inicio : "2018-11-13", fim: "2018-11-19", mais_detalhes:"", notificacoes:false},
+      //   {_id: 2, prioridade:"", titulo:"123", estimativa: "12", dificuldade:"2", descricao_tarefa: "123", tags :"123", status:"2",inicio : "2018-11-13", fim: "2018-11-19", mais_detalhes:"", notificacoes:false},
+      //   {_id: 3, prioridade:"", titulo:"123", estimativa: "12", dificuldade:"3", descricao_tarefa: "123", tags :"123", status:"3",inicio : "2018-11-13", fim: "2018-11-19", mais_detalhes:"", notificacoes:false}
+      // ]
       
       this.tasks = response.data.tasks
 
@@ -261,8 +268,6 @@ export default {
     },
     async showModal (id){
       const response = await CRUDServices.getPost('tasks/', {id: id})
-
-      console.log(response.data)
 
       switch(response.data.prioridade){
         case "1":

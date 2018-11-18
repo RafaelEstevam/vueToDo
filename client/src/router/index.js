@@ -10,7 +10,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/tasks',
+      path: '/',
       name: 'Tasks',
       component: Tasks
     },
@@ -25,7 +25,7 @@ export default new Router({
       component: EditTasks
     },
     {
-      path: '/',
+      path: '*',
       component: _404
     }
   ]
