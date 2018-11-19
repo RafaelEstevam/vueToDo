@@ -12,8 +12,9 @@ Acesse a pasta client e execute o comando abaixo no terminal:
 
 npm run dev
 
-## Para iniciar o front localmente na localhost:8081
+## Para iniciar o backend localmente na localhost:8081
 Acesse a pasta server e execute o comando abaixo no terminal:
+
 npm start
 
 ## Configuração do MongoDB
