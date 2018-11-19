@@ -9,7 +9,8 @@ app.use(bodyParser.json())
 app.use(cors())
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/vuetodo');
+mongoose.connect('mongodb://localhost:27017/vuetodo'); // porta mongodb
+
 var db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "connection error"));

@@ -2,29 +2,28 @@
 
 > Simples gerenciador de tarefas em Vue.js
 
-## Build Setup
+## Ambiente de desenvolvimento
 
-``` bash
-# install dependencies
-npm install
+Instale as dependências do node na pasta client e pasta server.
+Cada uma possui suas dependências específicas.
 
-# serve with hot reload at localhost:8080
+# Para iniciar o front localmente na localhost:8080
+Acesse a pasta client e execute o comando abaixo no terminal:
+
 npm run dev
 
-# build for production with minification
-npm run build
+# Para iniciar o front localmente na localhost:8081
+Acesse a pasta server e execute o comando abaixo no terminal:
+npm start
 
-# build for production and view the bundle analyzer report
-npm run build --report
+# Configuração do MongoDB
+A porta de acesso do MongoDB usada deverá ser a mesma informada no arquivo
+server/src/app.js. Por padrão o MongoDB usa a porta 27017
 
-# run unit tests
-npm run unit
+## Requisitos do sistema
 
-# run e2e tests
-npm run e2e
+- Node JS
+- Dependências do NPM instaladas
+- MongoDB instalado (Backend)
 
-# run all tests
-npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
