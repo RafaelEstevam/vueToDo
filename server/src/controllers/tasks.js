@@ -70,7 +70,6 @@ module.exports = function(app){
     var db = req.db;
     Tasks.findById(req.params.id, dto, function (error, tasks) {
       if (error) { console.error(error); }
-      
       tasks.titulo = req.body.titulo
       tasks.prioridade = req.body.prioridade
       tasks.estimativa = req.body.estimativa

@@ -1,6 +1,6 @@
 
 <template>
-  <div class="EditTasks row no-gutters">
+  <form class="EditTasks row no-gutters" @submit="validForm">
     <div class="col-sm-9 no-scroll pb-3">
       <div class="container mt-5 pt-4">
         <div class="row">
@@ -10,7 +10,7 @@
           <div class="col-sm-6">
             <div class="float-right mobile-orientation">
               <div class="float-right">
-                <select class="form-control" v-model="prioridade">
+                <select class="form-control" v-model="prioridade" required>
                   <option></option>
                   <option value="1">Baixa</option>
                   <option value="2">Média</option>
@@ -26,13 +26,13 @@
         <div class="row">
           <div class="col-sm-12">
             <span class="small text-info"><strong>Título: </strong></span>
-            <input class="form-control" placeholder="Título" v-model="titulo"/>
+            <input class="form-control" placeholder="Título" v-model="titulo" required/>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6">
             <span class="small text-info"><strong>Status da tarefa: </strong></span>
-            <select class="form-control" placeholder="Título" v-model="status">
+            <select class="form-control" placeholder="Título" v-model="status" required>
               <option></option>
               <option value="1">Finalizada</option>
               <option value="2">Em execução</option>
@@ -41,7 +41,7 @@
           </div>
           <div class="col-sm-6">
             <span class="small text-info"><strong>Grau de dificuldade: </strong></span>
-            <select class="form-control" placeholder="Dificuldade" v-model="dificuldade">
+            <select class="form-control" placeholder="Dificuldade" v-model="dificuldade" required>
               <option>Dificuldade</option>
               <option value="1">Fácil</option>
               <option value="2">Médio</option>
@@ -52,13 +52,13 @@
         <div class="row">
           <div class="col-sm-12">
             <span class="small text-info"><strong>Descrição da tarefa: </strong></span>
-            <textarea placeholder="Descrição da tarefa" class="form-control textarea-height" v-model="descricao_tarefa"></textarea>
+            <textarea placeholder="Descrição da tarefa" class="form-control textarea-height" v-model="descricao_tarefa" required></textarea>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-12">
             <span class="small text-info"><strong>Tags: </strong></span>
-            <input class="form-control" placeholder="Título" v-model="tags"/>
+            <input class="form-control" v-model="tags"/>
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@
                     <div class="input-group-prepend bg-info">
                       <div class="input-group-text"><i class="material-icons">access_time</i></div>
                     </div>
-                    <input type="text" class="form-control" v-model="estimativa">
+                    <input type="text" class="form-control" v-model="estimativa" required/>
                   </div>
                 </div>
               </div>
@@ -104,7 +104,7 @@
                     <div class="input-group-prepend bg-info">
                       <div class="input-group-text"><i class="material-icons">check_box_outline_blank</i></div>
                     </div>
-                    <input class="form-control" placeholder="Título" type="date" v-model="inicio"/>
+                    <input class="form-control" placeholder="Título" type="date" v-model="inicio" required/>
                   </div>
                 </div>
               </div>
@@ -115,7 +115,7 @@
                     <div class="input-group-prepend bg-info">
                       <div class="input-group-text"><i class="material-icons">check_box</i></div>
                     </div>
-                    <input class="form-control" placeholder="Título" type="date" v-model="fim"/>
+                    <input class="form-control" placeholder="Título" type="date" v-model="fim" required/>
                   </div>
                 </div>
               </div>
@@ -150,10 +150,10 @@
         </router-link>
       </div>
       <div class="col-sm-3 bg-secondary p-3">
-        <button class="btn btn-orange float-left col-sm-12 shadow" @click="updateTask"><i class="material-icons align-middle mobile">done</i> <span class="desktop">Salvar tarefa</span></button>
+        <button class="btn btn-orange float-left col-sm-12 shadow" type="submit"><i class="material-icons align-middle mobile">done</i> <span class="desktop">Salvar tarefa</span></button>
       </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -180,6 +180,7 @@ export default {
     this.getTask()
   },
   methods:{
+
     async getTask() {
       const response = await CRUDServices.getPost('tasks/', {id: this.$route.params.id})
 
@@ -221,7 +222,18 @@ export default {
         await CRUDServices.deletePost('tasks/', this.$route.params.id)
         this.$router.push({ name: 'Tasks' })
       }
+    },
+
+    validForm : function(e){
+
+      if(this.titulo && this.prioridade && this.estimativa && this.dificuldade && this.descricao_tarefa &&
+      this.status && this.inicio && this.fim){
+        this.updateTask()
+      }
+
+      e.preventDefault()
     }
+
   }
 }
 </script>
