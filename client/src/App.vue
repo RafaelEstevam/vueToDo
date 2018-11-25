@@ -7,6 +7,8 @@
         </div>
         <div class="row bg-dark text-left">
           <ul class="menu">
+            <li><router-link v-bind:to="{ name: 'Categories' }" class=""><i class="material-icons align-middle text-white">toc</i> <strong>Categorias</strong></router-link></li>
+            <li><router-link v-bind:to="{ name: 'NewCategories' }" class=""><i class="material-icons align-middle text-white">add</i> <strong>Nova categoria</strong></router-link></li>
             <li><router-link v-bind:to="{ name: 'Tasks' }" class=""><i class="material-icons align-middle text-white">toc</i> <strong>Tarefas</strong></router-link></li>
             <li><router-link v-bind:to="{ name: 'NewTasks' }" class=""><i class="material-icons align-middle text-white">add</i> <strong>Nova tarefa</strong></router-link></li>
           </ul>
