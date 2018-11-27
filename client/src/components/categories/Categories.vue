@@ -17,7 +17,29 @@
           </div>
         </div>
       </div>
-      <div class="container mt-5 pt-4">
+      <div class="container text-left mt-5 pt-4">
+        <div class="row">
+          <div class="col-sm-3">
+            <span class="small text-info float-left">
+              <strong>Busca: </strong>
+            </span>
+            <input placeholder="Título" required="required" class="form-control float-right col-sm-9">
+          </div>
+          <div class="col-sm-1 offset-sm-8">
+            <!-- <button class="btn btn-rounded btn-default float-right">
+              <i class="material-icons align-middle">more_vert</i>
+            </button> -->
+            <button class="btn btn-rounded btn-default float-right" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons align-middle">more_vert</i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">Selecionar todos</a>
+              <a class="dropdown-item" href="#">Apagar todos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container pt-4">
         <div class="row mb-4" v-for="item in tasks">
           <div class="col-sm-12">
             <div class="container">
@@ -50,11 +72,23 @@
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                   <div class="row">
                     <div class="col-sm-12">
-                      <h4 class="text-left text-info text-center">Importar e exportar</h4>
+                      <h4 class="text-left text-info text-center">Ferramentas</h4>
                     </div>
                   </div>
                   <div class="row mt-1">
-                    <div class="col-sm-12">
+                    <div class="mx-auto">
+                      <button class="btn btn-sm btn-rounded btn-orange float-left">
+                        <!-- <i class="material-icons align-middle">search</i> -->
+                        <span>Busca avançada</span>
+                      </button>
+                      <button class="btn btn-sm btn-rounded btn-danger float-left ml-3">
+                        <i class="material-icons align-middle">cloud_upload</i>
+                      </button>
+                      <a href="#/" class="router-link-active">
+                        <button class="btn btn-sm btn-rounded btn-info float-left ml-3">
+                          <i class="material-icons align-middle">cloud_download</i>
+                        </button>
+                      </a>
                     </div>
                   </div>
                 </div>
