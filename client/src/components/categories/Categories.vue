@@ -7,96 +7,84 @@
           <div class="col-sm-6">
             <h1 class="text-left">Categorias</h1>
           </div>
-          <div class="col-sm-6">
-            <div class="float-right mobile-orientation">
-              <router-link v-bind:to="{ name: 'NewCategory' }" class="">
-                <button class="btn btn-orange"><i class="material-icons align-middle">check</i> Nova categoria</button>
-              </router-link>
-              <!-- <button class="btn btn-default"><i class="material-icons align-middle">more_vert</i> </button> -->
-            </div>
-          </div>
         </div>
       </div>
-      <div class="container text-left mt-5 pt-4">
+      <div class="container mt-5 pt-4">
         <div class="row">
           <div class="col-sm-3">
-            <span class="small text-info float-left">
-              <strong>Busca: </strong>
-            </span>
-            <input placeholder="Título" required="required" class="form-control float-right col-sm-9">
-          </div>
-          <div class="col-sm-1 offset-sm-8">
-            <!-- <button class="btn btn-rounded btn-default float-right">
-              <i class="material-icons align-middle">more_vert</i>
-            </button> -->
-            <button class="btn btn-rounded btn-default float-right" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="material-icons align-middle">more_vert</i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Selecionar todos</a>
-              <a class="dropdown-item" href="#">Apagar todos</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container pt-4">
-        <div class="row mb-4" v-for="item in tasks">
-          <div class="col-sm-12">
-            <div class="container">
-              <div class="row shadow border-left card-task-list" v-bind:class="{ 'border-info': item.status == '1', 'border-orange': item.status == '2', 'border-danger' : item.status == '3'}">
-                <div class="col-sm-4 media p-3">
-                  <h4 class="media-body pb-3 mb-0 text-center align-middle"><strong class="d-block text-gray-dark">{{item.titulo}}</strong></h4>
-                </div>
-                <div class="col-sm-5 bg-light text-left p-3">
-                  <p class="media-body pb-3 mb-0 small">{{item.descricao_tarefa}}</p>
-                </div>
-                <div class="col-sm-3 p-3">
-                  <div class="float-right">
-                    <router-link v-bind:to="{ name: 'EditTasks', params: { id: item._id }}" class="btn btn-sm btn-info"><i class="material-icons align-middle">edit</i></router-link>
-                    <!-- <button class="btn btn-sm btn-secondary" @click="showModal(item._id)"><i class="material-icons align-middle">visibility</i></button> -->
-                    <button class="btn btn-sm btn-danger" @click="deleteTask(item._id)"><i class="material-icons align-middle">close</i></button>
-                  </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="material-icons">search</i>
                 </div>
               </div>
+              <input type="text" required="required" class="form-control" placeholder="Buscar">
             </div>
+          </div>
+          <div class="col-sm-3 offset-sm-6">
+            <button class="btn btn-default float-right"><i class="material-icons align-middle">more_vert</i></button>
+          </div>
+        </div>
+        <div class="row mb-4 mt-3 text-left">
+          <div class="col-sm-12">
+            t
           </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-3 bg-dark height-100hv">
+    <div class="col-sm-3 bg-dark no-scroll">
       <div class="container mt-sm-5 pt-4">
         <div class="row">
-          <div class="tab-content container" id="myTabContent">
+          <ul class="nav nav-pills nav-fill col-sm-12" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active small" id="home-tab" data-toggle="tab" href="#home"><i class="material-icons">add</i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link small" id="profile-tab" data-toggle="tab" href="#profile"><i class="material-icons">settings</i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="row">
+          <div class="tab-content container text-left" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-              <div class="container">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <h4 class="text-left text-info text-center">Ferramentas</h4>
-                    </div>
+              <div class="row mt-4">
+                <div class="col-sm-12">
+                  <h4 class="text-center text-info">Adicionar categoria</h4>
+                </div>
+              </div>
+              <div class="row mt-1">
+                <div class="col-sm-12">
+                  <span class="small text-white">Título</span>
+                  <div class="input-group">
+                    <input type="text" class="form-control" v-model="estimativa" required>
                   </div>
-                  <div class="row mt-1">
-                    <div class="mx-auto">
-                      <button class="btn btn-sm btn-rounded btn-orange float-left">
-                        <!-- <i class="material-icons align-middle">search</i> -->
-                        <span>Busca avançada</span>
-                      </button>
-                      <button class="btn btn-sm btn-rounded btn-danger float-left ml-3">
-                        <i class="material-icons align-middle">cloud_upload</i>
-                      </button>
-                      <a href="#/" class="router-link-active">
-                        <button class="btn btn-sm btn-rounded btn-info float-left ml-3">
-                          <i class="material-icons align-middle">cloud_download</i>
-                        </button>
-                      </a>
-                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <span class="small text-white">Descrição</span>
+                  <div class="input-group">
+                    <textarea class="form-control textarea-height" placeholder="Título" type="date" v-model="inicio" required></textarea>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="row mt-4">
+                <div class="col-sm-12">
+                  <h4 class="text-center text-info">Tarefas finalizadas</h4>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="row fixed-bottom no-gutters">
+          <div class="col-sm-3 offset-sm-9 bg-secondary p-3">
+            <button class="btn btn-orange float-left col-sm-12 shadow" type="submit"><i class="material-icons align-middle">done</i> <span>Salvar categoria</span></button>
+          </div>
+        </div>
       </div>
+      
     </div>
   </div>
 </template>

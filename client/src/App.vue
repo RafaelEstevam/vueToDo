@@ -1,17 +1,66 @@
 <template>
   <div id="app" class="mt-0">
     <div class="menu-navbar disable" id="main-navbar">
-      <div class="col-md-3 bg-dark">
+      <div class="col-md-3 bg-dark with-scroll">
         <div class="row bg-orange p-5">
           <h1 class="text-white mx-auto">Vue<strong class="text-dark">ToDo</strong></h1>
         </div>
         <div class="row bg-dark text-left">
-          <ul class="menu">
-            <li><router-link v-bind:to="{ name: 'Categories' }" class=""><i class="material-icons align-middle text-white">toc</i> <strong>Categorias</strong></router-link></li>
-            <li><router-link v-bind:to="{ name: 'NewCategories' }" class=""><i class="material-icons align-middle text-white">add</i> <strong>Nova categoria</strong></router-link></li>
-            <li><router-link v-bind:to="{ name: 'Tasks' }" class=""><i class="material-icons align-middle text-white">toc</i> <strong>Tarefas</strong></router-link></li>
-            <li><router-link v-bind:to="{ name: 'NewTasks' }" class=""><i class="material-icons align-middle text-white">add</i> <strong>Nova tarefa</strong></router-link></li>
-          </ul>
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Collapsible Group Item #1
+                  </button>
+                </h5>
+              </div>
+
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Collapsible Group Item #2
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Collapsible Group Item #3
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <ul class="menu">
+            <li>
+              <button><i class="material-icons align-middle text-white">toc</i><span>Tarefas</span></button>
+              <ul class="sub-menu">
+                <li><router-link v-bind:to="{ name: 'Tasks' }" class=""><i class="material-icons align-middle text-white">toc</i> <strong>Tarefas</strong></router-link></li>
+                <li><router-link v-bind:to="{ name: 'NewTasks' }" class=""><i class="material-icons align-middle text-white">add</i> <strong>Nova tarefa</strong></router-link></li>
+                <li><router-link v-bind:to="{ name: 'Categories' }" class=""><i class="material-icons align-middle text-white">toc</i> <strong>Categorias</strong></router-link></li>
+              </ul>
+            </li>
+          </ul> -->
         </div>
         <div class="row p-3 bg-secondary">
           <a class="" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons font-large">account_circle</i></a>
@@ -145,7 +194,14 @@ export default {
   width: 100%;
 }
 
-.menu li a{
+.menu li p{
+  margin-bottom: 0px;
+  color: #ff6e40;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+.menu li a, .menu li p{
   padding: 20px;
   width: 100%;
   display: inherit;
@@ -221,6 +277,10 @@ a:hover {
   height: 100vh;
   min-height: 100vh;
   overflow: hidden;
+}
+
+.with-scroll{
+  overflow-y: scroll
 }
 
 .textarea-height{
